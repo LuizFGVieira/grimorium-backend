@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
+import { DatabaseModule } from './database/database.module';
 
-const services = [];
+const modules = [DatabaseModule];
 
 @Module({
-  imports: [...services],
-  exports: [...services],
+  imports: [...modules],
+  exports: [...modules],
 })
 export class InfraModule {}
