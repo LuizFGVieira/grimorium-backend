@@ -1,7 +1,6 @@
 import { Document } from "mongoose";
 
 export interface Sheet extends Document {
-    readonly id: string;
     readonly userId: string;
     readonly systemId: string;
     readonly sheetDetailsId: string;

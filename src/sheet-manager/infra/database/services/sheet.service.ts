@@ -2,6 +2,7 @@ import { Model } from 'mongoose';
 import { Injectable, Inject } from '@nestjs/common';
 import { Sheet } from '../models/sheet.model';
 import { CreateSheetDTO } from '../dtos/sheet/create-sheet.dto';
+import { randomUUID } from 'crypto';
 
 @Injectable()
 export class SheetService {
