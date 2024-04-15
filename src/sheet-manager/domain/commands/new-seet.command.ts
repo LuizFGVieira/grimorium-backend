@@ -15,7 +15,7 @@ export class NewSheetCommand {
   ) { }
 
   public async execute(data: NewSheerRequestDTO, userId: string){
-    this.logger.log("Criando nova ficha...");
+    this.logger.debug("Criando nova ficha...");
     const createdSheet = await this.sheetService.create({...data, userId});
 
     return this.onSuccess(plainToClass(NewSheetResponseDTO, createdSheet));

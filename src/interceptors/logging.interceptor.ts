@@ -25,11 +25,7 @@ export class LoggingInterceptor implements NestInterceptor {
         query: request.query,
       },
     }
-
-    return next.handle().pipe(
-      tap(() => {
-        this.logger.log(metadata);
-      })
-    );
+    this.logger.log(metadata);
+    return next.handle();
   }
 }

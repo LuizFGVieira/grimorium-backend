@@ -15,7 +15,7 @@ export class NewSheetController {
   }
 
   private onSuccess(response: NewSheetResponseDTO): NewSheetResponseDTO {
-    this.logger.log('Ficha criada com sucesso');
+    this.logger.debug('Ficha criada com sucesso');
     return response;
   }
 }
