@@ -1,11 +1,13 @@
 import { Inject, Injectable, Logger } from "@nestjs/common";
 import { SheetService } from "src/sheet-manager/infra/database/services/sheet.service";
 import { NewSheerRequestDTO } from "../dtos/new-sheet/request.dto";
+import { NewSheetResponseDTO } from "../dtos/new-sheet/response.dto";
+import { plainToClass } from "class-transformer";
 
 @Injectable()
 export class NewSheetCommand {
   private readonly logger = new Logger(NewSheetCommand.name)
-  public onSuccess: (response: any) => Object;
+  public onSuccess: (response: NewSheetResponseDTO) => NewSheetResponseDTO;
 
   public constructor(
     @Inject(SheetService)
@@ -16,6 +18,6 @@ export class NewSheetCommand {
     this.logger.log("Criando nova ficha...");
     const createdSheet = await this.sheetService.create({...data, userId});
 
-    return this.onSuccess(createdSheet);
+    return this.onSuccess(plainToClass(NewSheetResponseDTO, createdSheet));
   }
 }

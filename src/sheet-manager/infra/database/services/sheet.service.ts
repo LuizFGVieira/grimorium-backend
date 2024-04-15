@@ -13,6 +13,6 @@ export class SheetService {
 
   async create(data: CreateSheetDTO): Promise<Sheet> {
     const createdSheet = new this.model(data);
-    return createdSheet.save();
+    return (await createdSheet.save()).toObject();
   }
 }

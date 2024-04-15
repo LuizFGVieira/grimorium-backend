@@ -1,6 +1,7 @@
 import { Body, Controller, Logger, Post } from '@nestjs/common';
 import { NewSheetCommand } from '../commands/new-seet.command';
 import { NewSheerRequestDTO } from '../dtos/new-sheet/request.dto';
+import { NewSheetResponseDTO } from '../dtos/new-sheet/response.dto';
 
 @Controller('sheets/new-sheet')
 export class NewSheetController {
@@ -13,8 +14,8 @@ export class NewSheetController {
     return await this.command.execute(requestData, 'id do usuário');
   }
 
-  private onSuccess(response: any): Object {
-    this.logger.log('Ficha criada com sucesso', response);
+  private onSuccess(response: NewSheetResponseDTO): NewSheetResponseDTO {
+    this.logger.log('Ficha criada com sucesso');
     return response;
   }
 }
