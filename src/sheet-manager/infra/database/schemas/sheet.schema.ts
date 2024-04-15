@@ -9,5 +9,5 @@ export const SheetSchema = new mongoose.Schema({
   type: String,
   image: String,
   name: String,
-  createdAt: {type: Date, default: Date.now()},
+  createdAt: { type: Date, default: Date.now() },
 });

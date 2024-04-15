@@ -6,11 +6,15 @@ import { LoggingInterceptor } from './interceptors/logging.interceptor';
 import { ResponseInterceptor } from './interceptors/response.interceptor';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, {logger: ['error', 'warn', 'log', 'debug', 'fatal', 'verbose']});
+  const app = await NestFactory.create(AppModule, {
+    logger: ['error', 'warn', 'log', 'debug', 'fatal', 'verbose'],
+  });
 
   const config = new DocumentBuilder()
     .setTitle('Grimorium Backend - API')
-    .setDescription('Descrição da API do sistema de gerenciador de fichas de RPG Grimorium')
+    .setDescription(
+      'Descrição da API do sistema de gerenciador de fichas de RPG Grimorium',
+    )
     .setVersion('1.0')
     .build();
 
@@ -18,7 +22,10 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document);
 
   app.useGlobalPipes(new ValidationPipe());
-  app.useGlobalInterceptors( new ResponseInterceptor(), new LoggingInterceptor());
-  await app.listen(3000);
+  app.useGlobalInterceptors(
+    new ResponseInterceptor(),
+    new LoggingInterceptor(),
+  );
+  await app.listen(process.env.APP_PORT || 3000);
 }
 bootstrap();

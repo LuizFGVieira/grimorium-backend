@@ -1,5 +1,5 @@
 export enum SheetTypes {
-    CHARACTER = 'CHARACTER',
-    ITEM = 'ITEM',
-    CREATURE = 'CREATURE',
+  CHARACTER = 'CHARACTER',
+  ITEM = 'ITEM',
+  CREATURE = 'CREATURE',
 }

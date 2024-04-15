@@ -4,7 +4,8 @@ import { SheetSchema } from '../schemas/sheet.schema';
 export const sheetProviders = [
   {
     provide: 'SHEET_MODEL',
-    useFactory: (connection: Connection) => connection.model('Sheet', SheetSchema),
+    useFactory: (connection: Connection) =>
+      connection.model('Sheet', SheetSchema),
     inject: ['DATABASE_CONNECTION'],
   },
 ];
