@@ -1,9 +1,9 @@
 import {
-  Injectable,
-  NestInterceptor,
-  ExecutionContext,
   CallHandler,
+  ExecutionContext,
+  Injectable,
   Logger,
+  NestInterceptor,
 } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -14,17 +14,25 @@ export interface Response<T> {
 
 @Injectable()
 export class ResponseInterceptor<T> implements NestInterceptor<T, Response<T>> {
-  private readonly logger = new Logger(ResponseInterceptor.name)
+  private readonly logger = new Logger(ResponseInterceptor.name);
 
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     const response = context.switchToHttp().getResponse();
-    return next.handle().pipe(map((data) => {
+    return next.handle().pipe(
+      map((data) => {
         const metadata = {
-          status: response.statusCode,
-          body: data
-        }
+          timestamp: new Date().getTime(),
+          Controller: context.getClass().name,
+          response: {
+            url: response.url,
+            hostname: response.hostname,
+            status: response.statusCode,
+            body: data,
+          },
+        };
         this.logger.log(metadata);
-      return data;
-    }));
+        return data;
+      }),
+    );
   }
 }
