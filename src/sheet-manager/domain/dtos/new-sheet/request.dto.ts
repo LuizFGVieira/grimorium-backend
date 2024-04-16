@@ -5,7 +5,7 @@ import {
   IsOptional,
   IsString,
 } from 'class-validator';
-import { SheetTypes } from 'src/sheet-manager/common/types/sheets.types';
+import { SheetTypes } from '../../../common/types/sheets.types';
 
 export class NewSheerRequestDTO {
   @IsString()

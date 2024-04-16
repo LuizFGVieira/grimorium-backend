@@ -14,4 +14,12 @@ export class SheetService {
     const createdSheet = new this.model(data);
     return (await createdSheet.save()).toObject();
   }
+
+  async delete(id: string): Promise<void> {
+    const sheet = await this.model.findById(id);
+    if(sheet) {
+      await sheet.deleteOne();
+    }
+    return;
+  }
 }

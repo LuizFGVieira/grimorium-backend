@@ -1,5 +1,5 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
-import { SheetService } from 'src/sheet-manager/infra/database/services/sheet.service';
+import { SheetService } from '../../infra/database/services/sheet.service';
 import { NewSheerRequestDTO } from '../dtos/new-sheet/request.dto';
 import { NewSheetResponseDTO } from '../dtos/new-sheet/response.dto';
 import { plainToClass } from 'class-transformer';

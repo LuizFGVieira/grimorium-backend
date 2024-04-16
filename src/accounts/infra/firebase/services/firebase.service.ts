@@ -4,7 +4,6 @@ import { initializeApp } from 'firebase/app';
 @Injectable()
 export class FirebaseService {
   private readonly firebaseApp;
-  private readonly firestore;
   constructor() {
     const firebaseConfig = {
       apiKey: process.env.FIREBASE_APIKEY,

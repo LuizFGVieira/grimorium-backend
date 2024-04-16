@@ -1,5 +1,5 @@
 import { Exclude, Expose, Transform } from 'class-transformer';
-import { SheetTypes } from 'src/sheet-manager/common/types/sheets.types';
+import { SheetTypes } from '../../../common/types/sheets.types';
 
 export class NewSheetResponseDTO {
   @Expose({ name: '_id' })

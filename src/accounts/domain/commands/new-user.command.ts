@@ -1,5 +1,5 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
-import { FirebaseAuthService } from 'src/accounts/infra/firebase/services/firebase-auth.service';
+import { FirebaseAuthService } from '../../infra/firebase/services/firebase-auth.service';
 
 @Injectable()
 export class NewUserCommand {

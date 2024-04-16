@@ -1,5 +1,5 @@
 import { Body, Controller, Logger, Post } from '@nestjs/common';
-import { NewSheetCommand } from '../commands/new-seet.command';
+import { NewSheetCommand } from '../commands/new-sheet.command';
 import { NewSheerRequestDTO } from '../dtos/new-sheet/request.dto';
 import { NewSheetResponseDTO } from '../dtos/new-sheet/response.dto';
 
