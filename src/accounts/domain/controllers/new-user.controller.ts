@@ -10,7 +10,7 @@ export class NewUserController {
   @Post()
   async create(@Body() requestData: any) {
     this.command.onSuccess = this.onSuccess;
-    await this.command.execute(requestData);
+    return await this.command.execute(requestData);
   }
 
   private onSuccess(response: any) {

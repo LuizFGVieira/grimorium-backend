@@ -12,8 +12,8 @@ export class NewUserCommand {
   ) {}
 
   public async execute(data: any) {
-    this.logger.debug('Criando nova ficha...');
-    const createdCredentials = await this.firebaseAuthService.register(
+    this.logger.debug('Criando novo usuário...');
+    const createdCredentials = await this.firebaseAuthService.signUp(
       data.email,
       data.password,
     );
