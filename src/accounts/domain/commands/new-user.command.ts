@@ -1,5 +1,6 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
 import { FirebaseAuthService } from '../../infra/firebase/services/firebase-auth.service';
+import { NewUserRequestDTO } from '../dtos/new-user/new-user.request.dto';
 
 @Injectable()
 export class NewUserCommand {
@@ -11,7 +12,7 @@ export class NewUserCommand {
     private readonly firebaseAuthService: FirebaseAuthService,
   ) {}
 
-  public async execute(data: any) {
+  public async execute(data: NewUserRequestDTO) {
     this.logger.debug('Criando novo usuário...');
     const createdCredentials = await this.firebaseAuthService.signUp(
       data.email,

@@ -1,7 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import {
   IdTokenResult,
-  UserCredential,
   createUserWithEmailAndPassword as createUser,
   getAuth,
   signInWithEmailAndPassword,
@@ -17,7 +16,7 @@ export class FirebaseAuthService {
     this.firebaseAuth = getAuth(this.firebaseService.getFirebaseApp());
   }
 
-  public async signUp(email: string, password: string): Promise<UserCredential> {
+  public async signUp(email: string, password: string): Promise<IdTokenResult> {
     try {
       this.logger.debug('Registrando credenciais de usuário no firebase...');
       const userCredential = await createUser(
@@ -25,7 +24,7 @@ export class FirebaseAuthService {
         email,
         password,
       );
-      return userCredential;
+      return userCredential.user.getIdTokenResult();
     } catch (error) {
       this.logger.error(
         'Erro ao registrar credenciais de usuário no firebase: ',
