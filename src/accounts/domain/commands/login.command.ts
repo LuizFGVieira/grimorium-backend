@@ -1,12 +1,14 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
 import { FirebaseAuthService } from '../../infra/firebase/services/firebase-auth.service';
 import { LoginRequestDTO } from '../dtos/login/login.request.dto';
+import { LoginResponseDTO } from '../dtos/login/login.response.dto';
 
 @Injectable()
 export class LoginCommand {
   private readonly logger = new Logger(LoginCommand.name);
+
   public onInvalidCredentials: () => void;
-  public onSuccess: (response: any) => void;
+  public onSuccess: (response: LoginResponseDTO) => void;
 
   public constructor(
     @Inject(FirebaseAuthService)

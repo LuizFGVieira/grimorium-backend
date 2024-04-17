@@ -17,11 +17,12 @@ export class LoginController {
   }
 
   private onSuccess(response: LoginResponseDTO) {
-    this.logger.debug('Logado com sucesso!');
+    this.logger.log('Logado com sucesso!');
     return response;
   }
 
   private onInvalidCredentials() {
+    this.logger.error('Falha ao tentar fazer login!');
     throw new UnauthorizedException('Credenciais inválidas');
   }
 }

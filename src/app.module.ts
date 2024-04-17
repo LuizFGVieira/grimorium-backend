@@ -1,3 +1,4 @@
+import { SharedModule } from './shared/shared.module';
 import { AccountsModule } from './accounts/accounts.module';
 import { Module } from '@nestjs/common';
 import { HealthCheckController } from './health-check.controller';
@@ -6,6 +7,7 @@ import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    SharedModule,
     AccountsModule,
     SheetManagerModule,
     ConfigModule.forRoot({

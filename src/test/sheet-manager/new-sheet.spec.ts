@@ -2,10 +2,10 @@ import { INestApplication } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import request from 'supertest';
 import { SheetManagerModule } from '../../sheet-manager/sheet-manger.module';
-import { SheetService } from '../../sheet-manager/infra/database/services/sheet.service';
+import { SheetService } from '../../sheet-manager/infra/mongoDB/services/sheet.service';
 import { NewSheetCommand } from '../../sheet-manager/domain/commands/new-sheet.command';
 import { faker } from '@faker-js/faker';
-import { CreateSheetDTO } from 'src/sheet-manager/infra/database/dtos/sheet/create-sheet.dto';
+import { CreateSheetDTO } from 'src/sheet-manager/infra/mongoDB/dtos/sheet/create-sheet.dto';
 import { NewSheetResponseDTO } from 'src/sheet-manager/domain/dtos/new-sheet/response.dto';
 
 describe('End2End : New Sheets', () => {

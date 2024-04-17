@@ -6,6 +6,6 @@ export const sheetProviders = [
     provide: 'SHEET_MODEL',
     useFactory: (connection: Connection) =>
       connection.model('Sheet', SheetSchema),
-    inject: ['DATABASE_CONNECTION'],
+    inject: ['SHEETS_DATABASE_CONNECTION'],
   },
 ];

@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
-import { DatabaseModule } from './database/database.module';
+import { MongoDBModule } from './mongoDB/mongodb.module';
 
-const modules = [DatabaseModule];
+const modules = [MongoDBModule];
 
 @Module({
   imports: [...modules],
