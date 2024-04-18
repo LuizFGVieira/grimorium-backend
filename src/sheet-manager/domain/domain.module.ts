@@ -6,10 +6,12 @@ import { FirebaseModule } from '../../common/firebase/firebase.module';
 import { MongoDBModule as AccountsMongoDBModule } from '../../accounts/infra/mongoDB/mongodb.module';
 import { ListSheetsCommand } from './commands/list-sheets.command';
 import { ListSheetsController } from './controllers/list-sheets.controller';
+import { UpdateSheetController } from './controllers/update-sheet.controller';
+import { UpdateSheetCommand } from './commands/update-sheet.command';
 
 @Module({
   imports: [SheetsMongoDBModule, FirebaseModule, AccountsMongoDBModule],
-  controllers: [NewSheetController, ListSheetsController],
-  providers: [NewSheetCommand, ListSheetsCommand],
+  controllers: [NewSheetController, ListSheetsController, UpdateSheetController],
+  providers: [NewSheetCommand, ListSheetsCommand, UpdateSheetCommand],
 })
 export class DomainModule {}
