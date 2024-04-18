@@ -1,6 +1,6 @@
 // sheets-database.provider.ts
 import mongoose from 'mongoose';
-import { MongoDBProvider } from '../../../../shared/mongoDB/mongodb.provider';
+import { MongoDBProvider } from '../../../../common/mongoDB/mongodb.provider';
 
 export const usersMongoDBProvider = {
   provide: 'USERS_DATABASE_CONNECTION',

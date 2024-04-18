@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { MongoDBProvider } from '../../../../shared/mongoDB/mongodb.provider';
+import { MongoDBProvider } from '../../../../common/mongoDB/mongodb.provider';
 
 export const sheetsMongoDBProvider = {
   provide: 'SHEETS_DATABASE_CONNECTION',

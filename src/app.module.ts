@@ -1,4 +1,4 @@
-import { SharedModule } from './shared/shared.module';
+import { SharedModule } from './common/shared.module';
 import { AccountsModule } from './accounts/accounts.module';
 import { Module } from '@nestjs/common';
 import { HealthCheckController } from './health-check.controller';

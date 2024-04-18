@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { sheetsMongoDBProvider } from './providers/sheets-mongodb.providers';
 import { sheetProviders } from './providers/sheet.providers';
 import { SheetService } from './services/sheet.service';
-import { SharedModule } from '../../../shared/shared.module';
+import { SharedModule } from '../../../common/shared.module';
 
 const mongooseProviders = [sheetsMongoDBProvider, ...sheetProviders];
 const mongooseServices = [SheetService];

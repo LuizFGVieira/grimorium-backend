@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { usersMongoDBProvider } from './providers/users-mongodb.providers';
 import { userProviders } from './providers/user.providers';
 import { UserService } from './services/user.service';
-import { SharedModule } from '../../../shared/shared.module';
+import { SharedModule } from '../../../common/shared.module';
 
 const mongooseProviders = [usersMongoDBProvider, ...userProviders];
 const mongooseServices = [UserService];

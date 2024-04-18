@@ -13,17 +13,30 @@ export class UserService {
   ) {}
 
   async create(data: CreateUserDTO): Promise<User> {
-    this.logger.debug('Criando usuário no banco de dados');
+    this.logger.debug('Criando usuário no banco de dados...');
     const createdUser = new this.model(data);
     return (await createdUser.save()).toObject();
   }
 
   async delete(id: string): Promise<void> {
-    this.logger.debug(`Deletando usuário ${id} no banco de dados`);
+    this.logger.debug(`Deletando usuário ${id} no banco de dados...`);
     const user = await this.model.findById(id);
-    if(user) {
+    if (user) {
       await user.deleteOne();
     }
     return;
+  }
+
+  async findByEmail(email: string) {
+    this.logger.debug(`Buscando email ${email} no banco de dados...`);
+    try {
+      return await this.model.findOne({ email }).exec();
+    } catch (error) {
+      this.logger.error(
+        `Erro ao buscar usuário de email ${email} no banco de dados: `,
+        error,
+      );
+      throw error;
+    }
   }
 }
