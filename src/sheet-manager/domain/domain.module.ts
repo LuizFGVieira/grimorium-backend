@@ -4,10 +4,12 @@ import { MongoDBModule as SheetsMongoDBModule} from '../infra/mongoDB/mongodb.mo
 import { NewSheetCommand } from './commands/new-sheet.command';
 import { FirebaseModule } from '../../accounts/infra/firebase/firebase.module';
 import { MongoDBModule as AccountsMongoDBModule } from '../../accounts/infra/mongoDB/mongodb.module';
+import { ListSheetsCommand } from './commands/list-sheets.command';
+import { ListSheetsController } from './controllers/list-sheets.controller';
 
 @Module({
   imports: [SheetsMongoDBModule, FirebaseModule, AccountsMongoDBModule],
-  controllers: [NewSheetController],
-  providers: [NewSheetCommand],
+  controllers: [NewSheetController, ListSheetsController],
+  providers: [NewSheetCommand, ListSheetsCommand],
 })
 export class DomainModule {}

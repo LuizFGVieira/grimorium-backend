@@ -20,9 +20,7 @@ export class FirebaseAdminService {
   public async verifyToken(token: string): Promise<DecodedIdToken> {
     this.logger.debug('Validando token JWT de usuário...');
     try {
-      const decodedToken = await admin.auth().verifyIdToken(token);
-      this.logger.debug(decodedToken);
-      return decodedToken;
+      return await admin.auth().verifyIdToken(token);
     } catch (error) {
       this.logger.error('Token expirado ou inválido', error);
       throw new Error(error);

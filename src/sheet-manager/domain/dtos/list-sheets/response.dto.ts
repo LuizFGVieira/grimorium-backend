@@ -2,7 +2,7 @@ import { Exclude, Expose, Transform } from 'class-transformer';
 import { SheetTypes } from '../../../common/types/sheets.types';
 import { Sheet } from 'src/sheet-manager/infra/mongoDB/models/sheet.model';
 
-export class NewSheetResponseDTO {
+export class ListSheetsResponseDTO {
   @Expose()
   id: string;
 
@@ -35,14 +35,14 @@ export class NewSheetResponseDTO {
   @Exclude()
   __v: number;
 
-  constructor(partial: Partial<NewSheetResponseDTO>) {
+  constructor(partial: Partial<ListSheetsResponseDTO>) {
     Object.assign(this, partial);
   }
 
-  public static fromEntity(sheet: Sheet): NewSheetResponseDTO {
+  public static fromEntity(sheet: Sheet): ListSheetsResponseDTO {
     const image = sheet.hasOwnProperty('image') ? sheet.image : null;
 
-    const response: NewSheetResponseDTO = {
+    const response: ListSheetsResponseDTO = {
       id: sheet._id,
       name: sheet.name,
       createdAt: sheet.createdAt,

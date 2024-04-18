@@ -1,6 +1,6 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
 import { SheetService } from '../../infra/mongoDB/services/sheet.service';
-import { NewSheerRequestDTO } from '../dtos/new-sheet/request.dto';
+import { NewSheetRequestDTO } from '../dtos/new-sheet/request.dto';
 import { NewSheetResponseDTO } from '../dtos/new-sheet/response.dto';
 import { plainToClass } from 'class-transformer';
 
@@ -14,9 +14,9 @@ export class NewSheetCommand {
     private readonly sheetService: SheetService,
   ) {}
 
-  public async execute(data: NewSheerRequestDTO, userId: string) {
+  public async execute(data: NewSheetRequestDTO, userId: string) {
     const createdSheet = await this.sheetService.create({ ...data, userId });
-
-    return this.onSuccess(plainToClass(NewSheetResponseDTO, createdSheet));
+    const response = NewSheetResponseDTO.fromEntity(createdSheet);
+    return this.onSuccess(plainToClass(NewSheetResponseDTO, response));
   }
 }

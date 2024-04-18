@@ -7,7 +7,7 @@ import {
 } from 'class-validator';
 import { SheetTypes } from '../../../common/types/sheets.types';
 
-export class NewSheerRequestDTO {
+export class NewSheetRequestDTO {
   @IsString()
   @IsNotEmpty()
   name: string;
