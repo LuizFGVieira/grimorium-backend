@@ -1,5 +1,5 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
-import { FirebaseAuthService } from '../../infra/firebase/services/firebase-auth.service';
+import { FirebaseAuthService } from '../../../common/firebase/services/firebase-auth.service';
 import { NewUserRequestDTO } from '../dtos/new-user/new-user.request.dto';
 import { UserService } from 'src/accounts/infra/mongoDB/services/user.service';
 import { NewUserResponseDTO } from '../dtos/new-user/new-user.response.dto';

@@ -4,7 +4,7 @@ import {
   ExecutionContext,
   Logger,
 } from '@nestjs/common';
-import { FirebaseAdminService } from '../accounts/infra/firebase/services/firebase-admin.service';
+import { FirebaseAdminService } from '../common/firebase/services/firebase-admin.service';
 import { UserService } from '../accounts/infra/mongoDB/services/user.service';
 import { plainToClass } from 'class-transformer';
 import { ActiveUserDTO } from '../common/types/active-user.dto';

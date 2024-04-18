@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { FirebaseModule } from './firebase/firebase.module';
+import { FirebaseModule } from '../../common/firebase/firebase.module';
 import { MongoDBModule } from './mongoDB/mongodb.module';
 
 const modules = [FirebaseModule, MongoDBModule];
