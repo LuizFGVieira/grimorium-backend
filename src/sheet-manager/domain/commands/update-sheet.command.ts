@@ -43,6 +43,6 @@ export class UpdateSheetCommand {
       ...data,
     });
 
-    return this.onSuccess(plainToClass(UpdateSheetResponseDTO, updatedSheet));
+    return this.onSuccess(UpdateSheetResponseDTO.fromEntity(updatedSheet));
   }
 }

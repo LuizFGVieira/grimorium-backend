@@ -31,9 +31,10 @@ export class SheetService {
   async update(data: UpdateSheetDTO): Promise<Sheet> {
     this.logger.debug(`Atualizando ficha ${data.sheetId} no banco de dados...`);
     const result = await this.model.findOneAndUpdate(
-      { id: data.sheetId },
+      { _id: new mongoose.Types.ObjectId(data.sheetId) },
       {
         ...data,
+        updatedAt: new Date(),
       },
     );
     return result? result.toObject(): null;

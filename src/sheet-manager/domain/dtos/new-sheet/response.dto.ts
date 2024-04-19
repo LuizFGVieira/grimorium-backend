@@ -14,6 +14,10 @@ export class NewSheetResponseDTO {
   createdAt: Date;
 
   @Expose()
+  @Transform((param) => new Date(param.value), { toClassOnly: true })
+  updatedAt: Date;
+
+  @Expose()
   @Transform((param) => param? param.value : null)
   image: string | null;
 
@@ -33,7 +37,7 @@ export class NewSheetResponseDTO {
   userId: string;
 
   @Exclude()
-  __v: number;
+  __v?: number;
 
   constructor(partial: Partial<NewSheetResponseDTO>) {
     Object.assign(this, partial);
@@ -45,14 +49,14 @@ export class NewSheetResponseDTO {
     const response: NewSheetResponseDTO = {
       id: sheet._id,
       name: sheet.name,
-      createdAt: sheet.createdAt,
       type: sheet.type as SheetTypes,
       sheetDetailsId: sheet.sheetDetailsId,
       systemId: sheet.systemId,
       isPublic: sheet.isPublic,
       image: image,
       userId: sheet.userId,
-      __v: sheet.__v,
+      createdAt: sheet.createdAt,
+      updatedAt: sheet.updatedAt,
     };
 
     return response;

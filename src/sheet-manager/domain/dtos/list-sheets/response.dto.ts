@@ -14,6 +14,10 @@ export class ListSheetsResponseDTO {
   createdAt: Date;
 
   @Expose()
+  @Transform((param) => new Date(param.value), { toClassOnly: true })
+  updatedAt: Date;
+
+  @Expose()
   @Transform((param) => param? param.value : null)
   image: string | null;
 
@@ -40,12 +44,15 @@ export class ListSheetsResponseDTO {
   }
 
   public static fromEntity(sheet: Sheet): ListSheetsResponseDTO {
-    const image = sheet.hasOwnProperty('image') ? sheet.image : null;
+    let image = null;
+
+    if(sheet.image) {
+      image = sheet.image;
+    }
 
     const response: ListSheetsResponseDTO = {
       id: sheet._id,
       name: sheet.name,
-      createdAt: sheet.createdAt,
       type: sheet.type as SheetTypes,
       sheetDetailsId: sheet.sheetDetailsId,
       systemId: sheet.systemId,
@@ -53,6 +60,8 @@ export class ListSheetsResponseDTO {
       image: image,
       userId: sheet.userId,
       __v: sheet.__v,
+      createdAt: sheet.createdAt,
+      updatedAt: sheet.updatedAt,
     };
 
     return response;

@@ -9,4 +9,5 @@ export interface Sheet extends Document {
   readonly image: string;
   readonly name: string;
   readonly createdAt: Date;
+  readonly updatedAt: Date;
 }

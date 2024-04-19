@@ -30,7 +30,7 @@ export class UserService {
   async findByEmail(email: string) {
     this.logger.debug(`Buscando email ${email} no banco de dados...`);
     try {
-      return await this.model.findOne({ email }).exec();
+      return (await this.model.findOne({ email }).exec()).toObject();
     } catch (error) {
       this.logger.error(
         `Erro ao buscar usuário de email ${email} no banco de dados: `,

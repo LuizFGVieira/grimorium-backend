@@ -10,4 +10,5 @@ export const SheetSchema = new mongoose.Schema({
   image: String,
   name: String,
   createdAt: { type: Date, default: Date.now() },
+  updatedAt: { type: Date, default: Date.now() },
 });
