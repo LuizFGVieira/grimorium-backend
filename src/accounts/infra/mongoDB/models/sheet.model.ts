@@ -1,5 +1,5 @@
 import { Document } from 'mongoose';
-import { RpgExperience } from 'src/accounts/common/types/rgp-experience.type';
+import { RpgExperience } from '../../../common/types/rgp-experience.type';
 
 export interface User extends Document {
   readonly name: string;

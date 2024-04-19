@@ -5,4 +5,4 @@ import { MongoDBProvider } from './mongoDB/mongodb.provider';
     providers: [MongoDBProvider],
     exports: [MongoDBProvider]
 })
-export class SharedModule {}
+export class CommonModule {}

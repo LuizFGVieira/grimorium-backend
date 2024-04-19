@@ -3,6 +3,6 @@ export class CreateSheetDTO {
   public systemId: string;
   public isPublic: boolean;
   public type: string;
-  public image: string;
+  public image?: string;
   public name: string;
 }

@@ -26,4 +26,14 @@ export class FirebaseAdminService {
       throw new Error(error);
     }
   }
+
+  public async delete(uid: string): Promise<void> {
+    this.logger.debug(`Deletando usuário ${uid} do Firebase...`);
+    try {
+      return await admin.auth().deleteUser(uid);
+    } catch (error) {
+      this.logger.error('Erro ao deletar usuário do Firebase', error);
+      throw new Error(error);
+    }
+  }
 }

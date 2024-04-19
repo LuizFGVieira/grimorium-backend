@@ -3,7 +3,7 @@ import { SheetService } from '../../infra/mongoDB/services/sheet.service';
 import { NewSheetRequestDTO } from '../dtos/new-sheet/request.dto';
 import { NewSheetResponseDTO } from '../dtos/new-sheet/response.dto';
 import { plainToClass } from 'class-transformer';
-import { FirebaseStorageService } from 'src/common/firebase/services/firebase-storage.service';
+import { FirebaseStorageService } from '../../../common/firebase/services/firebase-storage.service';
 
 @Injectable()
 export class NewSheetCommand {

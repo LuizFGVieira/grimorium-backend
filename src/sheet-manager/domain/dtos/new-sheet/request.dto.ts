@@ -26,5 +26,5 @@ export class NewSheetRequestDTO {
 
   @IsString()
   @IsOptional()
-  public image: string;
+  public image?: string;
 }

@@ -1,5 +1,5 @@
 import { IsBoolean, IsDateString, IsEmail, IsEnum, IsNotEmpty, IsString } from "class-validator";
-import { RpgExperience } from "src/accounts/common/types/rgp-experience.type";
+import { RpgExperience } from "../../../common/types/rgp-experience.type";
 
 export class NewUserRequestDTO {
     @IsEmail()

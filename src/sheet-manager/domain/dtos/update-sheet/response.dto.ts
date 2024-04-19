@@ -1,6 +1,6 @@
 import { Exclude, Expose, Transform } from 'class-transformer';
 import { SheetTypes } from '../../../common/types/sheets.types';
-import { Sheet } from 'src/sheet-manager/infra/mongoDB/models/sheet.model';
+import { Sheet } from '../../../infra/mongoDB/models/sheet.model';
 
 export class UpdateSheetResponseDTO {
   @Expose()

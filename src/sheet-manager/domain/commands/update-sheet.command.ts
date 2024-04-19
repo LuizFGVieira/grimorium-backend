@@ -1,6 +1,5 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
-import { plainToClass } from 'class-transformer';
-import { FirebaseStorageService } from 'src/common/firebase/services/firebase-storage.service';
+import { FirebaseStorageService } from '../../../common/firebase/services/firebase-storage.service';
 import { SheetService } from '../../infra/mongoDB/services/sheet.service';
 import { UpdateSheetRequestDTO } from '../dtos/update-sheet/request.dto';
 import { UpdateSheetResponseDTO } from '../dtos/update-sheet/response.dto';

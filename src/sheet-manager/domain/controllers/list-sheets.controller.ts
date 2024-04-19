@@ -1,8 +1,8 @@
-import { Controller, Get, Logger, UseGuards } from '@nestjs/common';
+import { Controller, Get, HttpCode, Logger, UseGuards } from '@nestjs/common';
 import { NewSheetResponseDTO } from '../dtos/new-sheet/response.dto';
 import { AuthGuard } from '../../../guards/auth.guard';
 import { ActiveUser } from '../../../decorators/active-user.decorator';
-import { ActiveUserDTO } from 'src/common/types/active-user.dto';
+import { ActiveUserDTO } from '../../../common/types/active-user.dto';
 import { ListSheetsCommand } from '../commands/list-sheets.command';
 
 @UseGuards(AuthGuard)
@@ -12,6 +12,7 @@ export class ListSheetsController {
   constructor(private readonly command: ListSheetsCommand) {}
 
   @Get()
+  @HttpCode(200)
   async create(@ActiveUser() user: ActiveUserDTO) {
     this.command.onSuccess = this.onSuccess;
     return await this.command.execute(user.id);

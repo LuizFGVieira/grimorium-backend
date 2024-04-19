@@ -1,13 +1,14 @@
 import {
   Body,
   Controller,
+  HttpCode,
   Logger,
   NotFoundException,
   Param,
   Put,
   UseGuards,
 } from '@nestjs/common';
-import { ActiveUserDTO } from 'src/common/types/active-user.dto';
+import { ActiveUserDTO } from '../../../common/types/active-user.dto';
 import { ActiveUser } from '../../../decorators/active-user.decorator';
 import { AuthGuard } from '../../../guards/auth.guard';
 import { UpdateSheetCommand } from '../commands/update-sheet.command';
@@ -21,6 +22,7 @@ export class UpdateSheetController {
   constructor(private readonly command: UpdateSheetCommand) {}
 
   @Put()
+  @HttpCode(200)
   async create(
     @ActiveUser() user: ActiveUserDTO,
     @Param('sheetId') sheetId: string,

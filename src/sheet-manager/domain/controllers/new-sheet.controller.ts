@@ -4,7 +4,7 @@ import { NewSheetRequestDTO } from '../dtos/new-sheet/request.dto';
 import { NewSheetResponseDTO } from '../dtos/new-sheet/response.dto';
 import { AuthGuard } from '../../../guards/auth.guard';
 import { ActiveUser } from '../../../decorators/active-user.decorator';
-import { ActiveUserDTO } from 'src/common/types/active-user.dto';
+import { ActiveUserDTO } from '../../../common/types/active-user.dto';
 
 @UseGuards(AuthGuard)
 @Controller('sheets/new-sheet')
