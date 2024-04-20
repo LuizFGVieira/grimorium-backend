@@ -20,13 +20,14 @@ export class NewUserCommand {
   ) {}
 
   public async execute(data: NewUserRequestDTO) {
+    this.logger.debug('Criando novo usuário...');
     let createdCredentials: IdTokenResult;
     try {
       createdCredentials = await this.firebaseAuthService.signUp(
         data.email,
         data.password,
       );
-    }catch(error) {
+    } catch (error) {
       return this.onFirebaseError();
     }
 

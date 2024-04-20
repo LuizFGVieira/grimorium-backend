@@ -1,5 +1,5 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
-import { Model } from 'mongoose';
+import mongoose, { Model } from 'mongoose';
 import { User } from '../models/sheet.model';
 import { CreateUserDTO } from '../dtos/user/create-user.dto';
 
@@ -14,17 +14,29 @@ export class UserService {
 
   async create(data: CreateUserDTO): Promise<User> {
     this.logger.debug('Criando usuário no banco de dados...');
-    const createdUser = new this.model(data);
-    return (await createdUser.save()).toObject();
+    try {
+      const createdUser = new this.model(data);
+      return (await createdUser.save()).toObject();
+    } catch (error) {
+      this.logger.error('Erro ao criar usuário no banco de dados: ', error);
+      throw error;
+    }
   }
 
   async delete(id: string): Promise<void> {
     this.logger.debug(`Deletando usuário ${id} no banco de dados...`);
-    const user = await this.model.findById(id);
-    if (user) {
-      await user.deleteOne();
+    try {
+      await this.model
+        .findOneAndDelete({ _id: new mongoose.Types.ObjectId(id) })
+        .exec();
+      return;
+    } catch (error) {
+      this.logger.error(
+        `Erro ao deletar usuário ${id} no banco de dados: `,
+        error,
+      );
+      throw error;
     }
-    return;
   }
 
   async findByEmail(email: string) {

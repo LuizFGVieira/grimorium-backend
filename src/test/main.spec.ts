@@ -9,7 +9,7 @@ import { UserService } from '../accounts/infra/mongoDB/services/user.service';
 import { FirebaseAdminService } from '..//common/firebase/services/firebase-admin.service';
 import { CommonModule } from '../common/common.module';
 
-describe('End2End : Sheets Management Flow', () => {
+describe('End2End : Fluxo de gerenciamento de fichas', () => {
   let app: INestApplication;
 
   let firebaseAdminService: FirebaseAdminService;
@@ -34,7 +34,8 @@ describe('End2End : Sheets Management Flow', () => {
     accounts = new AccountsTest();
     sheetService = moduleRef.get<SheetService>(SheetService);
     userService = moduleRef.get<UserService>(UserService);
-    firebaseAdminService = moduleRef.get<FirebaseAdminService>(FirebaseAdminService);
+    firebaseAdminService =
+      moduleRef.get<FirebaseAdminService>(FirebaseAdminService);
     return;
   });
 
@@ -61,13 +62,13 @@ describe('End2End : Sheets Management Flow', () => {
     return;
   });
 
-  afterEach(async () => {
-    if(userCredentials) {
+  afterAll(async () => {
+    if (userCredentials) {
       const decodedToken = await firebaseAdminService.verifyToken(accessToken);
       await firebaseAdminService.delete(decodedToken.uid);
 
       const user = await userService.findByEmail(userCredentials.email);
-      await userService.delete(user.id);
+      await userService.delete(user._id);
     }
     if (createdSheetId) {
       await sheetService.delete(createdSheetId);

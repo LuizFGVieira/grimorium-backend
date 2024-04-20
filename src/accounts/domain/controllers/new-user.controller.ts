@@ -1,4 +1,10 @@
-import { Body, ConflictException, Controller, Logger, Post } from '@nestjs/common';
+import {
+  Body,
+  ConflictException,
+  Controller,
+  Logger,
+  Post,
+} from '@nestjs/common';
 import { NewUserCommand } from '../commands/new-user.command';
 import { NewUserRequestDTO } from '../dtos/new-user/new-user.request.dto';
 import { NewUserResponseDTO } from '../dtos/new-user/new-user.response.dto';

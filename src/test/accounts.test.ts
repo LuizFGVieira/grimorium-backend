@@ -30,11 +30,13 @@ export class AccountsTest {
     return response.body.token;
   }
 
-  public async newUserTest(app: INestApplication): Promise<UserTestCredentials> {
+  public async newUserTest(
+    app: INestApplication,
+  ): Promise<UserTestCredentials> {
     const data: NewUserRequestDTO = {
       name: faker.person.fullName(),
       birthdate: faker.date.birthdate(),
-      email: faker.internet.email(),
+      email: faker.internet.email().toLowerCase(),
       isMaster: faker.datatype.boolean(),
       isPlayer: faker.datatype.boolean(),
       password: faker.internet.password(),

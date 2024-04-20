@@ -1,5 +1,5 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
-import mongoose, { Model, Mongoose } from 'mongoose';
+import mongoose, { Model } from 'mongoose';
 import { CreateSheetDTO } from '../dtos/sheet/create-sheet.dto';
 import { Sheet } from '../models/sheet.model';
 import { UpdateSheetDTO } from '../dtos/sheet/update-sheet.dto';
@@ -37,7 +37,7 @@ export class SheetService {
         updatedAt: new Date(),
       },
     );
-    return result? result.toObject(): null;
+    return result ? result.toObject() : null;
   }
 
   async findAllByUserId(userId: string): Promise<Sheet[]> {
@@ -54,7 +54,9 @@ export class SheetService {
 
   async findById(sheetId: string): Promise<Sheet> {
     this.logger.debug(`Buscando ficha ${sheetId} no banco de dados...`);
-    const result = await this.model.findOne({ _id: new mongoose.Types.ObjectId(sheetId) });
-    return result? result.toObject(): null;
+    const result = await this.model.findOne({
+      _id: new mongoose.Types.ObjectId(sheetId),
+    });
+    return result ? result.toObject() : null;
   }
 }
