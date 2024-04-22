@@ -20,7 +20,7 @@ export class DeleteSheetController {
 
   @Delete()
   @HttpCode(204)
-  async create(
+  async execute(
     @ActiveUser() user: ActiveUserDTO,
     @Param('sheetId') sheetId: string
   ) {

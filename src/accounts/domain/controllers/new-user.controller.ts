@@ -16,7 +16,7 @@ export class NewUserController {
   constructor(private readonly command: NewUserCommand) {}
 
   @Post()
-  async create(@Body() requestData: NewUserRequestDTO) {
+  async execute(@Body() requestData: NewUserRequestDTO) {
     requestData.email = requestData.email.toLowerCase();
     
     this.command.onFirebaseError = this.onFirebaseError;

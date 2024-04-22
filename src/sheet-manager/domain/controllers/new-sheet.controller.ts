@@ -13,7 +13,7 @@ export class NewSheetController {
   constructor(private readonly command: NewSheetCommand) {}
 
   @Post()
-  async create(
+  async execute(
     @Body() requestData: NewSheetRequestDTO,
     @ActiveUser() user: ActiveUserDTO,
   ) {

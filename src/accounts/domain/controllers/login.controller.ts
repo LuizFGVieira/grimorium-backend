@@ -10,7 +10,7 @@ export class LoginController {
   constructor(private readonly command: LoginCommand) {}
 
   @Post()
-  async create(@Body() requestData: LoginRequestDTO) {
+  async execute(@Body() requestData: LoginRequestDTO) {
     this.command.onInvalidCredentials = this.onInvalidCredentials;
     this.command.onSuccess = this.onSuccess;
     return await this.command.execute(requestData);

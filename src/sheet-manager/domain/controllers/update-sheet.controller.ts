@@ -23,7 +23,7 @@ export class UpdateSheetController {
 
   @Put()
   @HttpCode(200)
-  async create(
+  async execute(
     @ActiveUser() user: ActiveUserDTO,
     @Param('sheetId') sheetId: string,
     @Body() requestData: UpdateSheetRequestDTO,

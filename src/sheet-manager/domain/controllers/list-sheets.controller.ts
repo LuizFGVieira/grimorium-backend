@@ -13,7 +13,7 @@ export class ListSheetsController {
 
   @Get()
   @HttpCode(200)
-  async create(@ActiveUser() user: ActiveUserDTO) {
+  async execute(@ActiveUser() user: ActiveUserDTO) {
     this.command.onSuccess = this.onSuccess;
     return await this.command.execute(user.id);
   }
