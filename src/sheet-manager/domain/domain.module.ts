@@ -8,10 +8,12 @@ import { ListSheetsCommand } from './commands/list-sheets.command';
 import { ListSheetsController } from './controllers/list-sheets.controller';
 import { UpdateSheetController } from './controllers/update-sheet.controller';
 import { UpdateSheetCommand } from './commands/update-sheet.command';
+import { DeleteSheetController } from './controllers/delete-sheet.controller';
+import { DeleteSheetCommand } from './commands/delete-sheet.command';
 
 @Module({
   imports: [SheetsMongoDBModule, FirebaseModule, AccountsMongoDBModule],
-  controllers: [NewSheetController, ListSheetsController, UpdateSheetController],
-  providers: [NewSheetCommand, ListSheetsCommand, UpdateSheetCommand],
+  controllers: [NewSheetController, ListSheetsController, UpdateSheetController, DeleteSheetController],
+  providers: [NewSheetCommand, ListSheetsCommand, UpdateSheetCommand, DeleteSheetCommand],
 })
 export class DomainModule {}

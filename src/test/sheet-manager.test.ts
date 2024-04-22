@@ -1,6 +1,5 @@
 import { faker } from '@faker-js/faker';
 import { INestApplication } from '@nestjs/common';
-import { CreateSheetDTO } from '../sheet-manager/infra/mongoDB/dtos/sheet/create-sheet.dto';
 import request from 'supertest';
 import { NewSheetRequestDTO } from 'src/sheet-manager/domain/dtos/new-sheet/request.dto';
 import { SheetTypes } from 'src/sheet-manager/common/types/sheets.types';
@@ -10,7 +9,10 @@ export class SheetManagerTest {
   private readonly systemTypes = ['DND5E'];
   private readonly sheetTypes = ['ITEM', 'CHARACTER', 'CREATURE'];
 
-  public async newSheetTest(app: INestApplication, accessToken: string): Promise<string> {
+  public async newSheetTest(
+    app: INestApplication,
+    accessToken: string,
+  ): Promise<string> {
     const createSheetDto: NewSheetRequestDTO = {
       name: faker.person.fullName(),
       isPublic: faker.datatype.boolean(),
@@ -32,7 +34,11 @@ export class SheetManagerTest {
     return response.body.id;
   }
 
-  public async listSheetsTest(app: INestApplication, accessToken: string, createdSheetId: string): Promise<void> {
+  public async listSheetsTest(
+    app: INestApplication,
+    accessToken: string,
+    createdSheetId: string,
+  ): Promise<void> {
     const response = await request(app.getHttpServer())
       .get('/sheets/list')
       .set('Authorization', 'Bearer ' + accessToken)
@@ -44,7 +50,11 @@ export class SheetManagerTest {
     return;
   }
 
-  public async updateSheetTest(app: INestApplication, accessToken: string, createdSheetId: string): Promise<void> {
+  public async updateSheetTest(
+    app: INestApplication,
+    accessToken: string,
+    createdSheetId: string,
+  ): Promise<void> {
     const updateSheetDto: UpdateSheetRequestDTO = {
       name: faker.person.fullName(),
       isPublic: faker.datatype.boolean(),
@@ -58,12 +68,24 @@ export class SheetManagerTest {
     };
 
     const response = await request(app.getHttpServer())
-    .put('/sheets/update-sheet/'+createdSheetId)
-    .set('Authorization', 'Bearer ' + accessToken)
-    .send(updateSheetDto)
-    .expect(200);
+      .put('/sheets/update-sheet/' + createdSheetId)
+      .set('Authorization', 'Bearer ' + accessToken)
+      .send(updateSheetDto)
+      .expect(200);
 
-  expect(response.body.id).toBe(createdSheetId);
-  return;
+    expect(response.body.id).toBe(createdSheetId);
+    return;
+  }
+
+  public async deleteSheetTest(
+    app: INestApplication,
+    accessToken: string,
+    createdSheetId: string,
+  ): Promise<void> {
+    await request(app.getHttpServer())
+      .delete('/sheets/delete-sheet/' + createdSheetId)
+      .set('Authorization', 'Bearer ' + accessToken)
+      .expect(204);
+    return;
   }
 }

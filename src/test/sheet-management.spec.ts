@@ -67,6 +67,11 @@ describe('End2End : Fluxo de gerenciamento de fichas', () => {
     return;
   });
 
+  it('[DELETE:204] /sheets/delete-sheet/:sheetId', async () => {
+    await sheetManager.deleteSheetTest(app, accessToken, createdSheetId);
+    return;
+  });
+
   afterAll(async () => {
     if (userCredentials) {
       const decodedToken = await firebaseAdminService.verifyToken(accessToken);
@@ -74,9 +79,6 @@ describe('End2End : Fluxo de gerenciamento de fichas', () => {
 
       const user = await userService.findByEmail(userCredentials.email.toLowerCase());
       await userService.delete(user._id);
-    }
-    if (createdSheetId) {
-      await sheetService.delete(createdSheetId);
     }
     return;
   });

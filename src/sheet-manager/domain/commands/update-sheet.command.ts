@@ -22,7 +22,7 @@ export class UpdateSheetCommand {
     sheetId: string,
     data: UpdateSheetRequestDTO,
   ) {
-    this.logger.debug(`Atualizando dados da ficha do usuário ${sheetId}...`);
+    this.logger.debug(`Atualizando dados da ficha ${sheetId}...`);
 
     const sheet = await this.sheetService.findById(sheetId);
     if(!sheet || sheet.userId !== userId) {
