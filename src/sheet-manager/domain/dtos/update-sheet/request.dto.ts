@@ -10,22 +10,22 @@ import {
   export class UpdateSheetRequestDTO {
     @IsString()
     @IsOptional()
-    name: string;
+    name?: string;
   
     @IsString()
     @IsOptional()
-    systemId: string;
+    systemId?: string;
   
     @IsBoolean()
     @IsOptional()
-    public isPublic: boolean;
+    public isPublic?: boolean;
   
     @IsEnum(SheetTypes)
     @IsOptional()
-    public type: SheetTypes;
+    public type?: SheetTypes;
   
     @IsString()
     @IsOptional()
-    public image: string;
+    public image?: string;
   }
   

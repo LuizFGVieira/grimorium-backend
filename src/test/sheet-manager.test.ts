@@ -4,6 +4,7 @@ import { CreateSheetDTO } from '../sheet-manager/infra/mongoDB/dtos/sheet/create
 import request from 'supertest';
 import { NewSheetRequestDTO } from 'src/sheet-manager/domain/dtos/new-sheet/request.dto';
 import { SheetTypes } from 'src/sheet-manager/common/types/sheets.types';
+import { UpdateSheetRequestDTO } from 'src/sheet-manager/domain/dtos/update-sheet/request.dto';
 
 export class SheetManagerTest {
   private readonly systemTypes = ['DND5E'];
@@ -41,5 +42,28 @@ export class SheetManagerTest {
     expect(response.body.data[0]).toBeDefined();
     expect(response.body.data[0].id).toBe(createdSheetId);
     return;
+  }
+
+  public async updateSheetTest(app: INestApplication, accessToken: string, createdSheetId: string): Promise<void> {
+    const updateSheetDto: UpdateSheetRequestDTO = {
+      name: faker.person.fullName(),
+      isPublic: faker.datatype.boolean(),
+      systemId:
+        this.systemTypes[
+          faker.number.int({ min: 0, max: this.systemTypes.length - 1 })
+        ],
+      type: this.sheetTypes[
+        faker.number.int({ min: 0, max: this.sheetTypes.length - 1 })
+      ] as SheetTypes,
+    };
+
+    const response = await request(app.getHttpServer())
+    .put('/sheets/update-sheet/'+createdSheetId)
+    .set('Authorization', 'Bearer ' + accessToken)
+    .send(updateSheetDto)
+    .expect(200);
+
+  expect(response.body.id).toBe(createdSheetId);
+  return;
   }
 }

@@ -6,7 +6,7 @@ import { SheetManagerTest } from './sheet-manager.test';
 import { AccountsTest, UserTestCredentials } from './accounts.test';
 import { AccountsModule } from '../accounts/accounts.module';
 import { UserService } from '../accounts/infra/mongoDB/services/user.service';
-import { FirebaseAdminService } from '..//common/firebase/services/firebase-admin.service';
+import { FirebaseAdminService } from '../common/firebase/services/firebase-admin.service';
 import { CommonModule } from '../common/common.module';
 
 describe('End2End : Fluxo de gerenciamento de fichas', () => {
@@ -62,12 +62,17 @@ describe('End2End : Fluxo de gerenciamento de fichas', () => {
     return;
   });
 
+  it('[PUT:200] /sheets/update-sheet/:sheetId', async () => {
+    await sheetManager.updateSheetTest(app, accessToken, createdSheetId);
+    return;
+  });
+
   afterAll(async () => {
     if (userCredentials) {
       const decodedToken = await firebaseAdminService.verifyToken(accessToken);
       await firebaseAdminService.delete(decodedToken.uid);
 
-      const user = await userService.findByEmail(userCredentials.email);
+      const user = await userService.findByEmail(userCredentials.email.toLowerCase());
       await userService.delete(user._id);
     }
     if (createdSheetId) {

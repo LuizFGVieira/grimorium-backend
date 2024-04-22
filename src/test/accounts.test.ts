@@ -36,7 +36,7 @@ export class AccountsTest {
     const data: NewUserRequestDTO = {
       name: faker.person.fullName(),
       birthdate: faker.date.birthdate(),
-      email: faker.internet.email().toLowerCase(),
+      email: faker.internet.email(),
       isMaster: faker.datatype.boolean(),
       isPlayer: faker.datatype.boolean(),
       password: faker.internet.password(),
