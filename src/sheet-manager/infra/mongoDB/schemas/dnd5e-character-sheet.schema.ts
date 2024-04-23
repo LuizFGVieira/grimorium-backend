@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose';
 
-export const DND5eSheetDetailsSchema = new mongoose.Schema({
+export const DND5eCharacterSheetSchema = new mongoose.Schema({
   sheetId: String,
   name: String,
   background: String,

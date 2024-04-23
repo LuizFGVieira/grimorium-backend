@@ -1,6 +1,6 @@
 import { Document } from 'mongoose';
 
-export interface DND5eSheetDetails extends Document {
+export interface DND5eCharacterSheet extends Document {
   readonly sheetId: string;
   readonly name: string;
   readonly background: string;
