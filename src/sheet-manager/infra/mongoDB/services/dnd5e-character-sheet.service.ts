@@ -20,9 +20,9 @@ export class DND5eCharacterSheetService {
     return (await createdSheet.save()).toObject();
   }
 
-  async delete(id: string): Promise<void> {
-    this.logger.debug(`Deletando ficha ${id} do banco de dados...`);
-    const sheet = await this.model.findById(id);
+  async delete(sheetId: string): Promise<void> {
+    this.logger.debug(`Deletando ficha ${sheetId} do banco de dados...`);
+    const sheet = await this.model.findOne({sheetId: sheetId});
     if (sheet) {
       await sheet.deleteOne();
     }

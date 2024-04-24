@@ -10,7 +10,7 @@ import { UpdateSheetController } from './controllers/update-sheet.controller';
 import { UpdateSheetCommand } from './commands/update-sheet.command';
 import { DeleteSheetController } from './controllers/delete-sheet.controller';
 import { DeleteSheetCommand } from './commands/delete-sheet.command';
-import { DND5eCharacterSheetCommand } from './commands/dnd5e-character-sheet/new-dnd5e-character-sheet.command';
+import { DND5eCharacterSheetCommand } from './commands/dnd5e-character-sheet.command';
 
 @Module({
   imports: [SheetsMongoDBModule, FirebaseModule, AccountsMongoDBModule],

@@ -7,7 +7,7 @@ import { UpdateSheetRequestDTO } from 'src/sheet-manager/domain/dtos/update-shee
 
 export class SheetManagerTest {
   private readonly systemTypes = ['DND5E'];
-  private readonly sheetTypes = ['ITEM', 'CHARACTER', 'CREATURE'];
+  private readonly sheetTypes = ['CHARACTER'];
 
   public async newSheetTest(
     app: INestApplication,

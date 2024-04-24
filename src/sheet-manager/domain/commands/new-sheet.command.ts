@@ -4,14 +4,12 @@ import { NewSheetRequestDTO } from '../dtos/new-sheet/request.dto';
 import { NewSheetResponseDTO } from '../dtos/new-sheet/response.dto';
 import { plainToClass } from 'class-transformer';
 import { FirebaseStorageService } from '../../../common/firebase/services/firebase-storage.service';
-import { SheetDetailsCommand } from './sheet-details.command';
 import { SheetTypes } from '../../common/types/sheets.types';
-import { DND5eCharacterSheetCommand } from './dnd5e-character-sheet/new-dnd5e-character-sheet.command';
+import { DND5eCharacterSheetCommand } from './dnd5e-character-sheet.command';
 
 @Injectable()
 export class NewSheetCommand {
   private readonly logger = new Logger(NewSheetCommand.name);
-  private sheetDetailsCommand: SheetDetailsCommand;
   public onSuccess: (response: NewSheetResponseDTO) => NewSheetResponseDTO;
 
   public constructor(
@@ -19,6 +17,8 @@ export class NewSheetCommand {
     private readonly sheetService: SheetService,
     @Inject(FirebaseStorageService)
     private readonly firebaseStorageService: FirebaseStorageService,
+    @Inject(DND5eCharacterSheetCommand)
+    private readonly dnd5eCharacterSheetCommand: DND5eCharacterSheetCommand,
   ) {}
 
   public async execute(data: NewSheetRequestDTO, userId: string) {
@@ -60,8 +60,7 @@ export class NewSheetCommand {
   ): Promise<void> {
     switch (data.systemId) {
       case 'DND5E':
-        this.sheetDetailsCommand = new DND5eCharacterSheetCommand();
-        return await this.sheetDetailsCommand.newSheet(data, sheetId);
+        return await this.dnd5eCharacterSheetCommand.newSheet(data, sheetId);
       default:
         break;
     }
