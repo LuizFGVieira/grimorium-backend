@@ -3,11 +3,12 @@ import { SheetService } from '../../infra/mongoDB/services/sheet.service';
 import { DND5eCharacterSheetCommand } from './dnd5e-character-sheet.command';
 import { SheetTypes } from '../../common/types/sheets.types';
 import { Sheet } from '../../infra/mongoDB/models/sheet.model';
+import { DND5EGetCharacterDetailsResponseDTO } from '../dtos/get-sheet-details/dnd5e-character-response.dto';
 
 @Injectable()
 export class GetSheetDetailsCommand {
   private readonly logger = new Logger(GetSheetDetailsCommand.name);
-  public onSuccess: (response: any) => void;
+  public onSuccess: (response: DND5EGetCharacterDetailsResponseDTO) => void;
   public onSheetNotFound: (sheetId: string) => void;
 
   public constructor(
@@ -26,7 +27,7 @@ export class GetSheetDetailsCommand {
     }
 
     const sheetDetails = await this.getSheetDetails(sheet, sheetId);
-    return this.onSuccess(sheetDetails);
+    return this.onSuccess(DND5EGetCharacterDetailsResponseDTO.fromEntity(sheetDetails));
   }
 
   private async getSheetDetails(

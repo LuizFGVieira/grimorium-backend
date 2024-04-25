@@ -11,6 +11,7 @@ import { AuthGuard } from '../../../guards/auth.guard';
 import { ActiveUser } from '../../../decorators/active-user.decorator';
 import { ActiveUserDTO } from '../../../common/types/active-user.dto';
 import { GetSheetDetailsCommand } from '../commands/get-sheet-details.command';
+import { DND5EGetCharacterDetailsResponseDTO } from '../dtos/get-sheet-details/dnd5e-character-response.dto';
 
 @UseGuards(AuthGuard)
 @Controller('sheets/:sheetId/details')
@@ -29,7 +30,7 @@ export class GetSheetsDetailsController {
     return await this.command.execute(user.id, sheetId);
   }
 
-  private onSuccess(response: any) {
+  private onSuccess(response: DND5EGetCharacterDetailsResponseDTO) {
     this.logger.debug('Detalhes da ficha recuperados com sucesso');
     return response;
   }
