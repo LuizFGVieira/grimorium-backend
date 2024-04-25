@@ -11,12 +11,8 @@ export class DND5eCharacterSheetCommand {
     private readonly dnd5eCharacterSheetService: DND5eCharacterSheetService,
   ) {}
 
-  public async newSheet(
-    data: NewSheetRequestDTO,
-    sheetId: string,
-  ): Promise<void> {
+  public async newSheet(sheetId: string): Promise<void> {
     await this.dnd5eCharacterSheetService.create({
-      name: data.name,
       sheetId,
     });
     return;
@@ -25,5 +21,9 @@ export class DND5eCharacterSheetCommand {
   public async deleteSheet(sheetId: string): Promise<void> {
     await this.dnd5eCharacterSheetService.delete(sheetId);
     return;
+  }
+
+  public async getSheet(sheetId: string): Promise<any> {
+    return await this.dnd5eCharacterSheetService.findById(sheetId);
   }
 }

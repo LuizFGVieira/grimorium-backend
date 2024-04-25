@@ -67,13 +67,11 @@ export class SheetManagerTest {
       ] as SheetTypes,
     };
 
-    const response = await request(app.getHttpServer())
+    await request(app.getHttpServer())
       .put('/sheets/update-sheet/' + createdSheetId)
       .set('Authorization', 'Bearer ' + accessToken)
       .send(updateSheetDto)
-      .expect(200);
-
-    expect(response.body.id).toBe(createdSheetId);
+      .expect(204);
     return;
   }
 
@@ -81,11 +79,11 @@ export class SheetManagerTest {
     app: INestApplication,
     accessToken: string,
     createdSheetId: string,
-  ): Promise<void> {
-    await request(app.getHttpServer())
+  ): Promise<boolean> {
+    const response = await request(app.getHttpServer())
       .delete('/sheets/delete-sheet/' + createdSheetId)
       .set('Authorization', 'Bearer ' + accessToken)
       .expect(204);
-    return;
+    return response.status === 204;
   }
 }

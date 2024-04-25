@@ -2,12 +2,11 @@ import { Inject, Injectable, Logger } from '@nestjs/common';
 import { FirebaseStorageService } from '../../../common/firebase/services/firebase-storage.service';
 import { SheetService } from '../../infra/mongoDB/services/sheet.service';
 import { UpdateSheetRequestDTO } from '../dtos/update-sheet/request.dto';
-import { UpdateSheetResponseDTO } from '../dtos/update-sheet/response.dto';
 
 @Injectable()
 export class UpdateSheetCommand {
   private readonly logger = new Logger(UpdateSheetCommand.name);
-  public onSuccess: (response: UpdateSheetResponseDTO) => {};
+  public onSuccess: () => void;
   public onSheetNotFound: (sheetId: string) => void;
 
   public constructor(
@@ -42,6 +41,6 @@ export class UpdateSheetCommand {
       ...data,
     });
 
-    return this.onSuccess(UpdateSheetResponseDTO.fromEntity(updatedSheet));
+    return this.onSuccess();
   }
 }

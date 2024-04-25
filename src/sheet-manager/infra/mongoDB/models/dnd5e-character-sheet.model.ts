@@ -2,7 +2,6 @@ import { Document } from 'mongoose';
 
 export interface DND5eCharacterSheet extends Document {
   readonly sheetId: string;
-  readonly name: string;
   readonly background: string;
   readonly alignment: string;
   readonly exp: number;

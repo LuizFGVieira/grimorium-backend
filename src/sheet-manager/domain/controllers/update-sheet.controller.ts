@@ -13,7 +13,6 @@ import { ActiveUser } from '../../../decorators/active-user.decorator';
 import { AuthGuard } from '../../../guards/auth.guard';
 import { UpdateSheetCommand } from '../commands/update-sheet.command';
 import { UpdateSheetRequestDTO } from '../dtos/update-sheet/request.dto';
-import { UpdateSheetResponseDTO } from '../dtos/update-sheet/response.dto';
 
 @UseGuards(AuthGuard)
 @Controller('sheets/update-sheet/:sheetId')
@@ -22,7 +21,7 @@ export class UpdateSheetController {
   constructor(private readonly command: UpdateSheetCommand) {}
 
   @Put()
-  @HttpCode(200)
+  @HttpCode(204)
   async execute(
     @ActiveUser() user: ActiveUserDTO,
     @Param('sheetId') sheetId: string,
@@ -33,9 +32,9 @@ export class UpdateSheetController {
     return await this.command.execute(user.id, sheetId, requestData);
   }
 
-  private onSuccess(response: UpdateSheetResponseDTO): UpdateSheetResponseDTO {
+  private onSuccess(): void {
     this.logger.debug('Dados atualizados com sucesso');
-    return response;
+    return;
   }
 
   private onSheetNotFound(sheetId: string) {

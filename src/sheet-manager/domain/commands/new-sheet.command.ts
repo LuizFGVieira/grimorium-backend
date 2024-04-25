@@ -60,7 +60,7 @@ export class NewSheetCommand {
   ): Promise<void> {
     switch (data.systemId) {
       case 'DND5E':
-        return await this.dnd5eCharacterSheetCommand.newSheet(data, sheetId);
+        return await this.dnd5eCharacterSheetCommand.newSheet(sheetId);
       default:
         break;
     }

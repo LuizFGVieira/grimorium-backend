@@ -30,14 +30,19 @@ export class SheetService {
 
   async update(data: UpdateSheetDTO): Promise<Sheet> {
     this.logger.debug(`Atualizando ficha ${data.sheetId} no banco de dados...`);
-    const result = await this.model.findOneAndUpdate(
-      { _id: new mongoose.Types.ObjectId(data.sheetId) },
-      {
-        ...data,
-        updatedAt: new Date(),
-      },
-    );
-    return result ? result.toObject() : null;
+    try {
+      const result = await this.model.findOneAndUpdate(
+        { _id: new mongoose.Types.ObjectId(data.sheetId) },
+        {
+          ...data,
+          updatedAt: new Date(),
+        },
+      );
+      return result ? result.toObject() : null;
+    }catch(error) {
+      this.logger.error(`Erro ao atualizar dados da ficha ${data.sheetId} no banco de dados...`, error);
+      return null;
+    }
   }
 
   async findAllByUserId(userId: string): Promise<Sheet[]> {
@@ -45,7 +50,7 @@ export class SheetService {
       return this.model.find({ userId }).exec();
     } catch (error) {
       this.logger.error(
-        `Erro ao buscar fichas do usuáario ${userId} no banco de dados: `,
+        `Erro ao buscar fichas do usuário ${userId} no banco de dados: `,
         error,
       );
       throw error;
@@ -54,9 +59,14 @@ export class SheetService {
 
   async findById(sheetId: string): Promise<Sheet> {
     this.logger.debug(`Buscando ficha ${sheetId} no banco de dados...`);
-    const result = await this.model.findOne({
-      _id: new mongoose.Types.ObjectId(sheetId),
-    });
-    return result ? result.toObject() : null;
+    try {
+      const result = await this.model.findOne({
+        _id: new mongoose.Types.ObjectId(sheetId),
+      });
+      return result ? result.toObject() : null;
+    }catch(error) {
+      this.logger.error(`Erro ao buscar ficha ${sheetId} no banco de dados...`);
+      return null;
+    }
   }
 }

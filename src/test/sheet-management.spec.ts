@@ -68,7 +68,10 @@ describe('End2End : Fluxo de gerenciamento de fichas', () => {
   });
 
   it('[DELETE:204] /sheets/delete-sheet/:sheetId', async () => {
-    await sheetManager.deleteSheetTest(app, accessToken, createdSheetId);
+    const isSuccessfull = await sheetManager.deleteSheetTest(app, accessToken, createdSheetId);
+    if(isSuccessfull) {
+      createdSheetId = null;
+    }
     return;
   });
 
@@ -79,6 +82,9 @@ describe('End2End : Fluxo de gerenciamento de fichas', () => {
 
       const user = await userService.findByEmail(userCredentials.email.toLowerCase());
       await userService.delete(user._id);
+    }
+    if(createdSheetId) {
+      await sheetService.delete(createdSheetId);
     }
     return;
   });
