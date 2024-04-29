@@ -30,7 +30,7 @@ export class GetSheetsDetailsController {
     return await this.command.execute(user.id, sheetId);
   }
 
-  private onSuccess(response: DND5EGetCharacterDetailsResponseDTO) {
+  private onSuccess(response: unknown) {
     this.logger.debug('Detalhes da ficha recuperados com sucesso');
     return response;
   }

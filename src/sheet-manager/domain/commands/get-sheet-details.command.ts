@@ -7,7 +7,7 @@ import { Sheet } from '../../infra/mongoDB/models/sheet.model';
 @Injectable()
 export class GetSheetDetailsCommand {
   private readonly logger = new Logger(GetSheetDetailsCommand.name);
-  public onSuccess: (response: any) => void;
+  public onSuccess: (response: unknown) => void;
   public onSheetNotFound: (sheetId: string) => void;
 
   public constructor(
@@ -32,7 +32,7 @@ export class GetSheetDetailsCommand {
   private async getSheetDetails(
     sheet: Sheet,
     sheetId: string,
-  ): Promise<any> {
+  ): Promise<unknown> {
     switch (sheet.type) {
       case SheetTypes.CHARACTER:
         return await this.getCharacterSheetDetails(sheet.systemId, sheetId);
@@ -48,7 +48,7 @@ export class GetSheetDetailsCommand {
   private async getCharacterSheetDetails(
     systemId: string,
     sheetId: string,
-  ): Promise<any> {
+  ): Promise<unknown> {
     switch (systemId) {
       case 'DND5E':
         return await this.dnd5eCharacterSheetCommand.getSheet(sheetId);
@@ -60,14 +60,14 @@ export class GetSheetDetailsCommand {
   private getCreatureSheetDetails(
     systemId: string,
     sheetId: string,
-  ): Promise<void> {
+  ): Promise<unknown> {
     return;
   }
 
   private getItemSheetDetails(
     systemId: string,
     sheetId: string,
-  ): Promise<void> {
+  ): Promise<unknown> {
     return;
   }
 

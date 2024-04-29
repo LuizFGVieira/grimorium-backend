@@ -53,7 +53,7 @@ describe('End2End : Fluxo de gerenciamento de fichas', () => {
     return;
   });
 
-  it('[PUT:200] /sheets/update-sheet/:sheetId', async () => {
+  it('[PUT:204] /sheets/update-sheet/:sheetId', async () => {
     await sheetManager.updateSheetTest(app, accessToken, createdSheetId);
     return;
   });
