@@ -1,5 +1,5 @@
 import { INestApplication } from '@nestjs/common';
-import { LoginRequestDTO } from '../accounts/domain/dtos/login/login.request.dto';
+import { LoginRequestDTO } from '../../accounts/domain/dtos/login/login.request.dto';
 import { faker } from '@faker-js/faker';
 import request from 'supertest';
 import { NewUserRequestDTO } from 'src/accounts/domain/dtos/new-user/new-user.request.dto';

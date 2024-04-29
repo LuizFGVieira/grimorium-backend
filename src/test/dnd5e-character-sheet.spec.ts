@@ -8,13 +8,16 @@ import { AccountsModule } from '../accounts/accounts.module';
 import { UserService } from '../accounts/infra/mongoDB/services/user.service';
 import { FirebaseAdminService } from '../common/firebase/services/firebase-admin.service';
 import { CommonModule } from '../common/common.module';
+import { SheetTypes } from '../sheet-manager/common/types/sheets.types';
+import { DND5eCharacterSheetService } from '../sheet-manager/infra/mongoDB/services/dnd5e-character-sheet.service';
 
-describe('End2End : Fluxo de gerenciamento de fichas', () => {
+describe('End2End : Gerenciamento de ficha de personagem de DND5e', () => {
   let app: INestApplication;
 
   let firebaseAdminService: FirebaseAdminService;
   let sheetService: SheetService;
   let userService: UserService;
+  let characterSheetService: DND5eCharacterSheetService;
 
   let sheetManager: SheetManagerTest;
   let accounts: AccountsTest;
@@ -34,35 +37,23 @@ describe('End2End : Fluxo de gerenciamento de fichas', () => {
     accounts = new AccountsTest();
     sheetService = moduleRef.get<SheetService>(SheetService);
     userService = moduleRef.get<UserService>(UserService);
+    characterSheetService = moduleRef.get<DND5eCharacterSheetService>(DND5eCharacterSheetService);
     firebaseAdminService =
       moduleRef.get<FirebaseAdminService>(FirebaseAdminService);
 
     userCredentials = await accounts.newUserTest(app);
     accessToken = await accounts.loginTest(userCredentials, app);
+    createdSheetId = await sheetManager.newSheetTest(
+      app,
+      accessToken,
+      'DND5E',
+      SheetTypes.CHARACTER,
+    );
     return;
   }, 10000);
 
-  it('[POST:201] /sheets/new-sheet', async () => {
-    createdSheetId = await sheetManager.newSheetTest(app, accessToken);
-    expect(createdSheetId).toBeDefined();
-    return;
-  });
-
-  it('[GET:200] /sheets/list', async () => {
-    await sheetManager.listSheetsTest(app, accessToken, createdSheetId);
-    return;
-  });
-
-  it('[PUT:200] /sheets/update-sheet/:sheetId', async () => {
-    await sheetManager.updateSheetTest(app, accessToken, createdSheetId);
-    return;
-  });
-
-  it('[DELETE:204] /sheets/delete-sheet/:sheetId', async () => {
-    const isSuccessfull = await sheetManager.deleteSheetTest(app, accessToken, createdSheetId);
-    if(isSuccessfull) {
-      createdSheetId = null;
-    }
+  it('[GET:200] /sheets/:sheetId/details', async () => {
+    await sheetManager.sheetsDetailsTest(app, accessToken, createdSheetId);
     return;
   });
 
@@ -71,10 +62,13 @@ describe('End2End : Fluxo de gerenciamento de fichas', () => {
       const decodedToken = await firebaseAdminService.verifyToken(accessToken);
       await firebaseAdminService.delete(decodedToken.uid);
 
-      const user = await userService.findByEmail(userCredentials.email.toLowerCase());
+      const user = await userService.findByEmail(
+        userCredentials.email.toLowerCase(),
+      );
       await userService.delete(user._id);
     }
-    if(createdSheetId) {
+    if (createdSheetId) {
+      await characterSheetService.delete(createdSheetId);
       await sheetService.delete(createdSheetId);
     }
     return;

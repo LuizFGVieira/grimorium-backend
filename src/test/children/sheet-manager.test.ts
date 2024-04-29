@@ -12,15 +12,17 @@ export class SheetManagerTest {
   public async newSheetTest(
     app: INestApplication,
     accessToken: string,
+    systemId?: string,
+    type?: SheetTypes,
   ): Promise<string> {
     const createSheetDto: NewSheetRequestDTO = {
       name: faker.person.fullName(),
       isPublic: faker.datatype.boolean(),
-      systemId:
+      systemId: systemId ||
         this.systemTypes[
           faker.number.int({ min: 0, max: this.systemTypes.length - 1 })
         ],
-      type: this.sheetTypes[
+      type: type || this.sheetTypes[
         faker.number.int({ min: 0, max: this.sheetTypes.length - 1 })
       ] as SheetTypes,
     };
@@ -47,6 +49,18 @@ export class SheetManagerTest {
     expect(response.body.data).toBeDefined();
     expect(response.body.data[0]).toBeDefined();
     expect(response.body.data[0].id).toBe(createdSheetId);
+    return;
+  }
+
+  public async sheetsDetailsTest(
+    app: INestApplication,
+    accessToken: string,
+    createdSheetId: string,
+  ): Promise<void> {
+    await request(app.getHttpServer())
+      .get(`/sheets/${createdSheetId}/details`)
+      .set('Authorization', 'Bearer ' + accessToken)
+      .expect(200);
     return;
   }
 
