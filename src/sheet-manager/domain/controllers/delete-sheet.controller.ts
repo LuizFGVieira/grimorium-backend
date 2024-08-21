@@ -22,7 +22,7 @@ export class DeleteSheetController {
   @HttpCode(204)
   async execute(
     @ActiveUser() user: ActiveUserDTO,
-    @Param('sheetId') sheetId: string
+    @Param('sheetId') sheetId: string,
   ) {
     this.command.onSheetNotFound = this.onSheetNotFound;
     this.command.onSuccess = this.onSuccess;

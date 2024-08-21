@@ -6,7 +6,11 @@ import { CommonModule } from '../../../common/common.module';
 import { dnd5eCharacterSheetProviders } from './providers/dnd5e-character-sheet.providers';
 import { DND5eCharacterSheetService } from './services/dnd5e-character-sheet.service';
 
-const mongooseProviders = [sheetsMongoDBProvider, ...sheetProviders, ...dnd5eCharacterSheetProviders];
+const mongooseProviders = [
+  sheetsMongoDBProvider,
+  ...sheetProviders,
+  ...dnd5eCharacterSheetProviders,
+];
 const mongooseServices = [SheetService, DND5eCharacterSheetService];
 
 @Module({

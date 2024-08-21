@@ -24,7 +24,7 @@ export class UpdateSheetCommand {
     this.logger.debug(`Atualizando dados da ficha ${sheetId}...`);
 
     const sheet = await this.sheetService.findById(sheetId);
-    if(!sheet || sheet.userId !== userId) {
+    if (!sheet || sheet.userId !== userId) {
       return this.onSheetNotFound(sheetId);
     }
 

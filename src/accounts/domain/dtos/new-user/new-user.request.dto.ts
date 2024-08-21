@@ -1,35 +1,39 @@
-import { IsBoolean, IsDateString, IsEmail, IsEnum, IsNotEmpty, IsString } from "class-validator";
-import { RpgExperience } from "../../../common/types/rgp-experience.type";
+import {
+  IsBoolean,
+  IsDateString,
+  IsEmail,
+  IsEnum,
+  IsNotEmpty,
+  IsString,
+} from 'class-validator';
+import { RpgExperience } from '../../../common/types/rgp-experience.type';
 
 export class NewUserRequestDTO {
-    @IsEmail()
-    @IsNotEmpty()
-    email: string;
+  @IsEmail()
+  @IsNotEmpty()
+  email: string;
 
-    @IsString()
-    @IsNotEmpty()
-    password: string;
+  @IsString()
+  @IsNotEmpty()
+  password: string;
 
+  @IsString()
+  @IsNotEmpty()
+  name: string;
 
-    @IsString()
-    @IsNotEmpty()
-    name: string;
+  @IsDateString()
+  @IsNotEmpty()
+  birthdate: Date;
 
+  @IsEnum(RpgExperience)
+  @IsNotEmpty()
+  rpgExperience: RpgExperience;
 
-    @IsDateString()
-    @IsNotEmpty()
-    birthdate: Date;
+  @IsBoolean()
+  @IsNotEmpty()
+  isPlayer: boolean;
 
-
-    @IsEnum(RpgExperience)
-    @IsNotEmpty()
-    rpgExperience: RpgExperience;
-
-    @IsBoolean()
-    @IsNotEmpty()
-    isPlayer: boolean;
-
-    @IsBoolean()
-    @IsNotEmpty()
-    isMaster: boolean;
+  @IsBoolean()
+  @IsNotEmpty()
+  isMaster: boolean;
 }

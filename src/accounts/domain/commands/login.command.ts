@@ -22,7 +22,7 @@ export class LoginCommand {
         data.password,
       );
       return this.onSuccess(result);
-    }catch(error) {
+    } catch (error) {
       return this.onInvalidCredentials();
     }
   }

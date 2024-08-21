@@ -6,21 +6,25 @@ export const DND5eCharacterSheetSchema = new mongoose.Schema({
   alignment: String,
   exp: Number,
   race: String,
-  classes: [{
-    id: String,
-    name: String,
-    lvl: Number,
-  }],
-  classFeatures: [{
-    id: String,
-    name: String,
-    quantity: Number,
-  }],
+  classes: [
+    {
+      id: String,
+      name: String,
+      lvl: Number,
+    },
+  ],
+  classFeatures: [
+    {
+      id: String,
+      name: String,
+      quantity: Number,
+    },
+  ],
   proficiencyBonus: Number,
   inspiration: Number,
   armorClass: Number,
   hp: {
-    total: Number, 
+    total: Number,
     current: Number,
     temporary: Number,
   },
@@ -71,11 +75,13 @@ export const DND5eCharacterSheetSchema = new mongoose.Schema({
   },
   cooperPieces: Number,
   recialTraits: [String],
-  equipments: [{
-    id: String,
-    name: String,
-    type: String,
-  }],
+  equipments: [
+    {
+      id: String,
+      name: String,
+      type: String,
+    },
+  ],
   personalityTraits: String,
   ideals: String,
   bonds: String,
@@ -83,46 +89,58 @@ export const DND5eCharacterSheetSchema = new mongoose.Schema({
   age: String,
   skin: String,
   hair: String,
-  allies: [{
-    name: String,
-    description: String,
-  }],
-  craft: [{
-    name: String,
-    description: String,
-  }],
+  allies: [
+    {
+      name: String,
+      description: String,
+    },
+  ],
+  craft: [
+    {
+      name: String,
+      description: String,
+    },
+  ],
   backstoryId: String,
   spellcasting: {
     class: String,
     keyAbility: String,
     cd: Number,
     bonus: Number,
-    spellSlot: [{
-      total: Number,
-      expended: Number,
-    }],
-    knwonSpells: [{
-      id: String,
-      name: String,
-      level: Number,
-      school: String,
-      range: Number,
-      castingTime: String,
-    }],
-    preparedSpells: [{
-      id: String,
-      name: String,
-      level: Number,
-      school: String,
-      range: Number,
-      castingTime: String,
-    }],
+    spellSlot: [
+      {
+        total: Number,
+        expended: Number,
+      },
+    ],
+    knwonSpells: [
+      {
+        id: String,
+        name: String,
+        level: Number,
+        school: String,
+        range: Number,
+        castingTime: String,
+      },
+    ],
+    preparedSpells: [
+      {
+        id: String,
+        name: String,
+        level: Number,
+        school: String,
+        range: Number,
+        castingTime: String,
+      },
+    ],
   },
   notes: [String],
-  addons: [{
-    id: String,
-    type: String,
-  }],
+  addons: [
+    {
+      id: String,
+      type: String,
+    },
+  ],
   createdAt: { type: Date, default: Date.now() },
   updatedAt: { type: Date, default: Date.now() },
 });

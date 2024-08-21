@@ -13,7 +13,9 @@ export class DND5eCharacterSheetService {
     private model: Model<DND5eCharacterSheet>,
   ) {}
 
-  async create(data: CreateDND5eCharacterSheetDTO): Promise<DND5eCharacterSheet> {
+  async create(
+    data: CreateDND5eCharacterSheetDTO,
+  ): Promise<DND5eCharacterSheet> {
     this.logger.debug('Salvando ficha de D&D 5e no banco de dados...');
     const createdSheet = new this.model(data);
     return (await createdSheet.save()).toObject();
@@ -21,7 +23,7 @@ export class DND5eCharacterSheetService {
 
   async delete(sheetId: string): Promise<void> {
     this.logger.debug(`Deletando ficha ${sheetId} do banco de dados...`);
-    const sheet = await this.model.findOne({sheetId: sheetId});
+    const sheet = await this.model.findOne({ sheetId: sheetId });
     if (sheet) {
       await sheet.deleteOne();
     }
@@ -39,8 +41,11 @@ export class DND5eCharacterSheetService {
         },
       );
       return result ? result.toObject() : null;
-    }catch(error) {
-      this.logger.error(`Erro ao atualizar dados da ficha ${data.sheetId} no banco de dados...`, error);
+    } catch (error) {
+      this.logger.error(
+        `Erro ao atualizar dados da ficha ${data.sheetId} no banco de dados...`,
+        error,
+      );
       return null;
     }
   }

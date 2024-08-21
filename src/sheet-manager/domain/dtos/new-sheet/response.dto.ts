@@ -18,7 +18,7 @@ export class NewSheetResponseDTO {
   updatedAt: Date;
 
   @Expose()
-  @Transform((param) => param? param.value : null)
+  @Transform((param) => (param ? param.value : null))
   image: string | null;
 
   @Expose()

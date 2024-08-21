@@ -37,8 +37,10 @@ export class FirebaseAuthService {
   public async signIn(email: string, password: string): Promise<IdTokenResult> {
     try {
       this.logger.debug('Fazendo login de usuário no firebase...');
-      return (await signInWithEmailAndPassword(this.firebaseAuth, email, password)).user.getIdTokenResult()
-    }catch(error) {
+      return (
+        await signInWithEmailAndPassword(this.firebaseAuth, email, password)
+      ).user.getIdTokenResult();
+    } catch (error) {
       this.logger.error('Erro ao logar usuário no firebase: ', error);
       throw new Error(error);
     }

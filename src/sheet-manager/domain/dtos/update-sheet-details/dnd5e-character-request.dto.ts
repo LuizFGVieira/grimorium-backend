@@ -1,4 +1,10 @@
-import { IsArray, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator';
+import {
+  IsArray,
+  IsNumber,
+  IsOptional,
+  IsString,
+  ValidateNested,
+} from 'class-validator';
 import { DND5eCharacterSheet } from '../../../infra/mongoDB/models/dnd5e-character-sheet.model';
 import { Type } from 'class-transformer';
 

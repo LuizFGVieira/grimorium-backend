@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { FirebaseService } from './firebase.service';
-import { UploadResult, getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
+import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
 import { randomUUID } from 'crypto';
 @Injectable()
 export class FirebaseStorageService {
@@ -12,7 +12,7 @@ export class FirebaseStorageService {
   }
 
   public async uploadImage(base64Image: string, path: string): Promise<string> {
-    this.logger.debug('Fazendo upload da imagem no Firebase Storage...')
+    this.logger.debug('Fazendo upload da imagem no Firebase Storage...');
     try {
       const buffer = Buffer.from(base64Image, 'base64');
 
@@ -25,8 +25,11 @@ export class FirebaseStorageService {
       await uploadBytes(storageRef, buffer);
 
       return getDownloadURL(storageRef);
-    }catch(error) {
-      this.logger.error('Falha ao fazer upload da imagem no Firebase Storage...', error)
+    } catch (error) {
+      this.logger.error(
+        'Falha ao fazer upload da imagem no Firebase Storage...',
+        error,
+      );
       throw error;
     }
   }

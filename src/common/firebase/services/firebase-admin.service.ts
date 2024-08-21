@@ -1,5 +1,4 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { FirebaseService } from './firebase.service';
 import admin from 'firebase-admin';
 import { DecodedIdToken } from 'firebase-admin/lib/auth/token-verifier';
 

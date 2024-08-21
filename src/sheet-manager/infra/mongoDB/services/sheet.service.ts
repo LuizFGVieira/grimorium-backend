@@ -39,8 +39,11 @@ export class SheetService {
         },
       );
       return result ? result.toObject() : null;
-    }catch(error) {
-      this.logger.error(`Erro ao atualizar dados da ficha ${data.sheetId} no banco de dados...`, error);
+    } catch (error) {
+      this.logger.error(
+        `Erro ao atualizar dados da ficha ${data.sheetId} no banco de dados...`,
+        error,
+      );
       return null;
     }
   }
@@ -64,7 +67,7 @@ export class SheetService {
         _id: new mongoose.Types.ObjectId(sheetId),
       });
       return result ? result.toObject() : null;
-    }catch(error) {
+    } catch (error) {
       this.logger.error(`Erro ao buscar ficha ${sheetId} no banco de dados...`);
       return null;
     }

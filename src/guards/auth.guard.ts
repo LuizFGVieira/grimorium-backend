@@ -31,7 +31,8 @@ export class AuthGuard implements CanActivate {
     const sanitizedToken = token.replace('Bearer ', '');
 
     try {
-      const decodedToken = await this.firebaseAdminService.verifyToken(sanitizedToken);
+      const decodedToken =
+        await this.firebaseAdminService.verifyToken(sanitizedToken);
       const user = await this.userService.findByEmail(decodedToken.email);
       request.user = plainToClass(ActiveUserDTO, user);
       this.logger.debug('Usuário autenticado com sucesso');

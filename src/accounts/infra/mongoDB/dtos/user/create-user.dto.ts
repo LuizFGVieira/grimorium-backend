@@ -1,4 +1,4 @@
-import { RpgExperience } from "../../../../common/types/rgp-experience.type";
+import { RpgExperience } from '../../../../common/types/rgp-experience.type';
 
 export class CreateUserDTO {
   public name: string;

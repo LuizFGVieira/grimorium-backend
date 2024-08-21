@@ -18,7 +18,7 @@ export class NewUserController {
   @Post()
   async execute(@Body() requestData: NewUserRequestDTO) {
     requestData.email = requestData.email.toLowerCase();
-    
+
     this.command.onFirebaseError = this.onFirebaseError;
     this.command.onSuccess = this.onSuccess;
     return await this.command.execute(requestData);

@@ -7,11 +7,10 @@ import {
   Param,
   UseGuards,
 } from '@nestjs/common';
-import { AuthGuard } from '../../../guards/auth.guard';
-import { ActiveUser } from '../../../decorators/active-user.decorator';
 import { ActiveUserDTO } from '../../../common/types/active-user.dto';
+import { ActiveUser } from '../../../decorators/active-user.decorator';
+import { AuthGuard } from '../../../guards/auth.guard';
 import { GetSheetDetailsCommand } from '../commands/get-sheet-details.command';
-import { DND5EGetCharacterDetailsResponseDTO } from '../dtos/get-sheet-details/dnd5e-character-response.dto';
 
 @UseGuards(AuthGuard)
 @Controller('sheets/:sheetId/details')

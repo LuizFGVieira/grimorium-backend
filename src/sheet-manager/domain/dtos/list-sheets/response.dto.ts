@@ -18,7 +18,7 @@ export class ListSheetsResponseDTO {
   updatedAt: Date;
 
   @Expose()
-  @Transform((param) => param? param.value : null)
+  @Transform((param) => (param ? param.value : null))
   image: string | null;
 
   @Expose()
@@ -46,7 +46,7 @@ export class ListSheetsResponseDTO {
   public static fromEntity(sheet: Sheet): ListSheetsResponseDTO {
     let image = null;
 
-    if(sheet.image) {
+    if (sheet.image) {
       image = sheet.image;
     }
 

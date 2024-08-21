@@ -6,7 +6,7 @@ import { ListSheetsResponseDTO } from '../dtos/list-sheets/response.dto';
 @Injectable()
 export class ListSheetsCommand {
   private readonly logger = new Logger(ListSheetsCommand.name);
-  public onSuccess: (response: ListSheetsResponseDTO[]) => {};
+  public onSuccess: (response: ListSheetsResponseDTO[]) => void;
 
   public constructor(
     @Inject(SheetService)
@@ -19,7 +19,7 @@ export class ListSheetsCommand {
     const response: ListSheetsResponseDTO[] = sheets.map((sheet) => {
       const partialSheet = ListSheetsResponseDTO.fromEntity(sheet);
       return plainToClass(ListSheetsResponseDTO, partialSheet);
-    })
+    });
     return this.onSuccess(response);
   }
 }
