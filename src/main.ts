@@ -28,6 +28,7 @@ async function bootstrap() {
     new ResponseInterceptor(),
     new LoggingInterceptor(),
   );
+  app.enableCors(); 
   await app.listen(process.env.APP_PORT || 3000);
 }
 bootstrap();
